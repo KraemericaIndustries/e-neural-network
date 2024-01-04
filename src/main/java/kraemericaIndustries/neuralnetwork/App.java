@@ -1,6 +1,5 @@
 package kraemericaIndustries.neuralnetwork;
 
-
 public class App {
 
 	static double neuron(double[] x, double[] w, double b) {  //  x = inputs, w = weights, b = bias
@@ -20,6 +19,36 @@ public class App {
 		//  ARGUMENTS for neuron() are inputs of x1 & x2, weights[] of 1 & 1, and a bias that achieves the desired result of an AND gate: 
 		return neuron(new double[] {x1, x2}, new double[] {1, 1}, -1);  
 	}
+	
+	static double or(double x1, double x2) {
+    	//  RETURN the result of INVOKING neuron()
+		//  ARGUMENTS for neuron() are inputs of x1 & x2, weights[] of 1 & 1, and a bias that achieves the desired result of an OR gate: 
+		return neuron(new double[] {x1, x2}, new double[] {1, 1}, 0);  
+	}
+	
+	static double xor(double x1, double x2) {
+    	//  RETURN the result of INVOKING neuron()
+		//  ARGUMENTS for neuron() are inputs of x1 & x2, weights[] of 1 & 1, and a bias that achieves the desired result of an XOR gate: 
+		return neuron(new double[] {x1, x2}, new double[] {1, 1}, -1);  
+	}
+	
+	static double nor(double x1, double x2) {
+    	//  RETURN the result of INVOKING neuron()
+		//  ARGUMENTS for neuron() are inputs of x1 & x2, weights[] of 1 & 1, and a bias that achieves the desired result of an NOR gate: 
+		return neuron(new double[] {x1, x2}, new double[] {-1, -1}, 1);  
+	}
+	
+	static double nand(double x1, double x2) {
+    	//  RETURN the result of INVOKING neuron()
+		//  ARGUMENTS for neuron() are inputs of x1 & x2, weights[] of 1 & 1, and a bias that achieves the desired result of an NAND gate: 
+		return neuron(new double[] {x1, x2}, new double[] {-1, -1}, 2);  
+	}
+	
+	static double xnor(double x1, double x2) {
+    	//  RETURN the result of INVOKING neuron()
+		//  ARGUMENTS for neuron() are inputs of x1 & x2, weights[] of 1 & 1, and a bias that achieves the desired result of an XNOR gate: 
+		return neuron(new double[] {x1, x2}, new double[] {1, 1}, -1);  
+	}
 
 	public static void main(String[] args) {
 
@@ -28,6 +57,11 @@ public class App {
 			double x2 = i%2;
 
 			double output = and(x1, x2);  //  INVOKE and()... first iteration x1 = 0, x2 = 0...
+//			double output = or(x1, x2);  //  INVOKE and()... first iteration x1 = 0, x2 = 0...
+//			double output = xor(x1, x2);  //  INVOKE and()... first iteration x1 = 0, x2 = 0...   //  WIP
+//			double output = nor(x1, x2);  //  INVOKE and()... first iteration x1 = 0, x2 = 0...
+//			double output = nand(x1, x2);  //  INVOKE and()... first iteration x1 = 0, x2 = 0...
+//			double output = xnor(x1, x2);  //  INVOKE and()... first iteration x1 = 0, x2 = 0...  //  WIP
 
      		//  Our output.  (%d = integer), (\t = tab), (\n = newline)
 			//  Doubles x1, x2, output are cast to ints
