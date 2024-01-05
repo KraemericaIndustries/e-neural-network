@@ -2,13 +2,17 @@ package kraemericaIndustries.matrix;
 
 public class Matrix {
 
-	private static final String NUMBER_FORMAT = "%12.5f";
+	private static final String NUMBER_FORMAT = "%+12.5f ";  //  The + signs to o/p
 	private int rows;
 	private int cols;
 	
 	public interface Producer {  //  A functional interface (because it only has 1 method in it 
 		double produce(int index);
 	}
+	
+	public interface ValueProducer {  
+		double produce(int index, double value);
+	}	
 
 	private double[] a;
 
@@ -24,6 +28,17 @@ public class Matrix {
 		for(int i = 0; i < a.length; i++) {
 			a[i] = producer.produce(i);
 		}
+	}
+	
+	
+	public Matrix apply(ValueProducer producer) {
+		Matrix result = new Matrix(rows, cols);
+		
+		for(int i = 0; i < a.length; i++) {
+			result.a[i] = producer.produce(i, a[i]);
+		}
+		
+		return result;
 	}
 	
 	public String toString() {

@@ -9,9 +9,9 @@ import kraemericaIndustries.matrix.Matrix;
 public class MatrixTest {
 
 	@Test
-	public void constructionTest() {
+	public void testToString() {
 		Matrix m = new Matrix(3, 4, i -> i * 2);  //  LAMBDA!  
-
+		
 		String text = m.toString();
 		
 		double[] expected = new double[12];
