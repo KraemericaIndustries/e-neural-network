@@ -7,6 +7,18 @@ import org.junit.*;
 import kraemericaIndustries.matrix.Matrix;
 
 public class MatrixTest {
+	
+	@Test
+	public void testMultiplyDouble() {
+		Matrix m = new Matrix(3, 4, i -> (i - 6) * 0.5);  //  LAMBDA!
+		
+		double x = 0.5;
+		
+		Matrix result = m.apply((index, value) -> x * value);
+		
+		System.out.println(m);
+		System.out.println(result);
+	}
 
 	@Test
 	public void testToString() {
