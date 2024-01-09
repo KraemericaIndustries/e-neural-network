@@ -15,6 +15,8 @@ public class MatrixTest {
 		Matrix m2 = new Matrix(3, 2, i -> i);
 		
 		Matrix result = m1.multiply(m2);
+		
+		System.out.println(result);
 	}
 	
 	@Test
