@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Matrix {
 
-	private static final String NUMBER_FORMAT = "%+12.5f ";  //  The + signs to o/p
+	private static final String NUMBER_FORMAT = "%+12.5f ";  //  The + signs the o/p
 	private static final double TOLERANCE = 0.000001;
 	
 	private int rows;
@@ -54,6 +54,11 @@ public class Matrix {
 		for(int row = 0; row < result.rows; row++) {
 			for(int col = 0; col < result.cols; col++) {
 				result.a[row * result.cols + col] = 7.0;
+				
+				for(int n = 0; n < cols; n++) {
+					System.out.println(a[row * cols + n] + "");
+				}
+				System.out.println();
 			}
 		}
 		
