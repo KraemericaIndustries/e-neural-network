@@ -17,7 +17,11 @@ public class Matrix {
 	
 	public interface ValueProducer {  
 		double produce(int index, double value);
-	}	
+	}
+	
+	public interface RowColProducer {  
+		double produce(int row, int col, double value);
+	}
 
 	private double[] a;
 
@@ -35,7 +39,6 @@ public class Matrix {
 		}
 	}
 	
-	
 	public Matrix apply(ValueProducer producer) {
 		Matrix result = new Matrix(rows, cols);
 		
@@ -45,6 +48,22 @@ public class Matrix {
 		
 		return result;
 	}
+	
+	public Matrix modify(RowColProducer producer) {
+		
+		int index = 0;
+		
+		for(int row = 0; row < rows; ++row) {
+			for(int col = 0; col < cols; ++col) {
+				
+				a[index] = producer.produce(row, col, a[index]);
+				
+				++index;
+			}
+		}
+		return this;
+	}
+	
 	
 	public Matrix multiply(Matrix m) {
 		Matrix result = new Matrix(rows, m.cols);
