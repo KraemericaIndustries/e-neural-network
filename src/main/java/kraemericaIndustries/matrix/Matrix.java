@@ -15,7 +15,7 @@ public class Matrix {
 		double produce(int index);
 	}
 	
-	public interface ValueProducer {  
+	public interface IndexValueProducer {  
 		double produce(int index, double value);
 	}
 	
@@ -39,7 +39,7 @@ public class Matrix {
 		}
 	}
 	
-	public Matrix apply(ValueProducer producer) {
+	public Matrix apply(IndexValueProducer producer) {
 		Matrix result = new Matrix(rows, cols);
 		
 		for(int i = 0; i < a.length; i++) {
