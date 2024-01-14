@@ -74,7 +74,7 @@ public class Matrix {
 			for(int n = 0; n < cols; n++) {
 				for(int col = 0; col < result.cols; col++) {				
 				
-					result.a[row * result.cols + col] += a[row * cols + n] * a[col + n * m.cols]; 
+					result.a[row * result.cols + col] += a[row * cols + n] * m.a[col + n * m.cols]; 
 				}
 			}
 		}

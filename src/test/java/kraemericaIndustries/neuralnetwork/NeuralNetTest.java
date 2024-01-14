@@ -2,12 +2,16 @@ package kraemericaIndustries.neuralnetwork;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Random;
+
 import org.junit.Test;
 
 import kraemericaIndustries.matrix.Matrix;
 
 public class NeuralNetTest {
 
+	private Random random = new Random();
+	
 	@Test
 	public void testAddBias() {
 		
@@ -22,5 +26,24 @@ public class NeuralNetTest {
 		Matrix expected = new Matrix(3, 3, i -> expectedValues[i]);
 		
 		assertTrue(expected.equals(result));
+	}
+	
+	@Test
+	public void testReLu() {
+		
+		final int numberNeurons = 5;
+		final int numberInputs = 6;
+		final int inputSize = 4;
+		
+		Matrix input = new Matrix(inputSize, numberInputs, i -> random.nextDouble());
+		Matrix weights = new Matrix(numberNeurons, inputSize, i -> random.nextGaussian());
+		Matrix biases = new Matrix(numberNeurons, 1, i -> random.nextGaussian());
+		
+		Matrix result = weights.multiply(input).modify((row, col, value) -> value + biases.get(row));
+		
+		System.out.println(input);
+		System.out.println(weights);
+		System.out.println(biases);
+		System.out.println(result);
 	}
 }
