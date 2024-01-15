@@ -25,8 +25,28 @@ public class NeuralNetTest {
 		Matrix layer1Biases = new Matrix(layer1Size, 1, i -> random.nextGaussian());
 		
 		Matrix layer2Weights = new Matrix(layer2Size, layer1Weights.getRows(), i -> random.nextGaussian());
-		Matrix layer3Biases = new Matrix(layer2Size, 1, i -> random.nextGaussian());
+		Matrix layer2Biases = new Matrix(layer2Size, 1, i -> random.nextGaussian());
 		
+		var output = input;
+		System.out.println(output);
+		
+		output = layer1Weights.multiply(output);
+		System.out.println(output);
+		
+		output = output.modify((row, col, value) -> value + layer1Biases.get(row));
+		System.out.println(output);
+		
+		output = output.modify(value -> value > 0 ? value : 0);
+		System.out.println(output);
+		
+		output = layer2Weights.multiply(output);
+		System.out.println(output);
+		
+		output = output.modify((row, col, value) -> value + layer2Biases.get(row));
+		System.out.println(output);
+		
+		output = output.softmax();
+		System.out.println(output);
 	}
 	
 	@Test
