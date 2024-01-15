@@ -27,6 +27,10 @@ public class Matrix {
 		void consume(int index, double value);
 	}
 	
+	public interface RowColValueConsumer {
+		void consume(int row, int col, double value);
+	}
+	
 	public interface RowColProducer {  
 		double produce(int row, int col, double value);
 	}
@@ -79,6 +83,16 @@ public class Matrix {
 			a[i] = producer.produce(a[i]);
 		}
 		return this;
+	}
+	
+	public void forEach(RowColValueConsumer consumer) {
+		int index = 0;
+		
+		for(int row = 0; row < rows; row++) {
+				for(int col = 0; col < cols; col++) {				
+					 consumer.consume(row, col, a[index++]);
+				}
+		}
 	}
 	
 	public void forEach(IndexValueConsumer consumer) {
