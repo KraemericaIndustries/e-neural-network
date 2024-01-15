@@ -13,6 +13,18 @@ public class NeuralNetTest {
 	private Random random = new Random();
 	
 	@Test
+	public void testTemp() {
+		Engine engine = new Engine();
+		
+		engine.add(Transform.DENSE);
+		engine.add(Transform.RELU);
+		engine.add(Transform.DENSE);
+		engine.add(Transform.SOFTMAX);
+		
+		System.out.println(engine);
+	}
+	
+	@Test
 	public void testAddBias() {
 		
 		Matrix input = new Matrix(3, 3, i -> (i + 1));
