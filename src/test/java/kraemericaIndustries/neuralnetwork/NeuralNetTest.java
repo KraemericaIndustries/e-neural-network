@@ -28,13 +28,12 @@ public class NeuralNetTest {
 			expected.set(randomRow, col, 1);
 		}
 		
-		Approximator.gradient(input, in -> {
-			
+		Matrix result = Approximator.gradient(input, in -> {
 			return LossFunction.crossEntropy(expected, in);
 		});
 		
 		
-		System.out.println(expected);
+		System.out.println(result);
 	}
 	
 	@Test
