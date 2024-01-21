@@ -40,7 +40,6 @@ public class NeuralNetTest {
 			
 			assertTrue(Math.abs(value - (softmaxValue - expectedValue)) < 0.01);
 		});
-		
 	}	
 	
 	@Test
