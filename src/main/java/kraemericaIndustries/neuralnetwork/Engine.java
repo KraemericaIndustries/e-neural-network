@@ -10,10 +10,14 @@ public class Engine {
 	private LinkedList<Matrix> weights = new LinkedList<>();
 	private LinkedList<Matrix> biases = new LinkedList<>();
 	
-	Matrix runForwards(Matrix input) {
+	BatchResult runForwards(Matrix input) {
+		
+		BatchResult batchResult = new BatchResult();
 		Matrix output = input;
 		
 		int denseIndex = 0;
+		
+		batchResult.addIo(output);
 		
 		for(var t: transforms) {
 			if(t == Transform.DENSE) {
@@ -30,11 +34,13 @@ public class Engine {
 			else if(t == Transform.SOFTMAX) {
 				output = output.softmax();
 			}
+			
+			batchResult.addIo(output);
 		}
-		return output;
+		return batchResult;
 	}
 	
-	public Matrix runBackwards(Matrix error) {
+	public Matrix runBackwards(BatchResult batchResult, Matrix expected) {
 		
 		var transformsIt = transforms.descendingIterator();
 		
