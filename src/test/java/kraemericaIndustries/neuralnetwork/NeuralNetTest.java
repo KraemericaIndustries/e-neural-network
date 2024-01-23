@@ -141,7 +141,7 @@ public class NeuralNetTest {
 		});
 	}
 	
-//	@Test
+	@Test
 	public void testEngine() {
 		Engine engine = new Engine();
 		
@@ -157,9 +157,7 @@ public class NeuralNetTest {
 		Matrix input = new Matrix(5, 4, i -> random.nextGaussian());
 		
 		Matrix output = engine.runForwards(input);
-		
-		System.out.println(engine);
-		System.out.println(output);
+		engine.runBackwards(null);
 	}
 	
 	//@Test
