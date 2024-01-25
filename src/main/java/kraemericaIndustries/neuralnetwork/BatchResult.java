@@ -8,8 +8,18 @@ public class BatchResult {
 
 	private LinkedList<Matrix> io = new LinkedList<>();
 	private LinkedList<Matrix> weightErrors = new LinkedList<>();
+	private LinkedList<Matrix> weightInputs = new LinkedList<>();
+	
 	private Matrix inputError;
 	private double loss;
+	
+	public void addWeightInput(Matrix input) {
+		weightInputs.add(input);
+	}
+	
+	public LinkedList<Matrix> getWeightInputs() {
+		return weightInputs;
+	}
 	
 	public LinkedList<Matrix> getIo() {
 		return io;
