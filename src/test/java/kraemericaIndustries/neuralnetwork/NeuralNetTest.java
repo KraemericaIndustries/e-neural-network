@@ -11,6 +11,16 @@ import kraemericaIndustries.matrix.Matrix;
 public class NeuralNetTest {
 
 	private Random random = new Random();
+	
+	@Test
+	public void testTrainEngine() {
+		int inputRows = 5;
+		int cols = 6;
+		int outputRows = 7;
+		
+		Matrix input = Util.generateInputMatrix(inputRows, cols);
+		Matrix expected = Util.generateTrainableExpectedMatrix(outputRows, input);
+	}
 
 	@Test
 	public void testWeightGradient() {
