@@ -149,6 +149,38 @@ public Matrix modify(IndexValueProducer producer) {
 		return result;
 	}
 	
+	//  The following method MAGICALLY APPEARS in "133. Getting Greatest Row Numbers".  I have no record of it
+	//  I'll add the method 'just in case' - but it may never be invoked.
+	//  Buyer beware...
+	public double sum() {
+		double sum = 0; 
+		
+		for(var v: a) {
+			sum += v;
+		}
+		
+		return sum;
+	}
+	
+	public Matrix getGreatestRowNumber() {
+		Matrix result = new Matrix(1, cols);
+		
+		double[] greatest = new double[cols];
+		
+		for (int i = 0; i < cols; i++) {
+			greatest[i] = Double.MIN_VALUE;
+		}
+		
+		forEach((row, col, value) -> {
+			if(value > greatest[col]) {
+				greatest[col] = value;
+				result.a[col] = row;
+			}
+		});
+		
+		return result;
+	}
+	
 	public Matrix sumColumns() {
 		
 		Matrix result = new Matrix(1, cols);
