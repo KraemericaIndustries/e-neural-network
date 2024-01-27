@@ -14,12 +14,9 @@ public class NeuralNetTest {
 	
 	@Test
 	public void testTrainEngine() {
-		int inputRows = 5;
-		int cols = 6;
-		int outputRows = 7;
-		
-		Matrix input = Util.generateInputMatrix(inputRows, cols);
-		Matrix expected = Util.generateTrainableExpectedMatrix(outputRows, input);
+		int inputRows = 500;
+		int cols = 32;
+		int outputRows = 3;
 		
 		Engine engine = new Engine();
 		engine.add(Transform.DENSE, 6, inputRows);
@@ -27,20 +24,19 @@ public class NeuralNetTest {
 		engine.add(Transform.DENSE, outputRows);
 		engine.add(Transform.SOFTMAX);
 		
-		BatchResult batchResult = engine.runForwards(input);
-		engine.evaluate(batchResult, expected);
-		
-		double loss1 = batchResult.getLoss();
-		
-		engine.runBackwards(batchResult, expected);
-		engine.adjust(batchResult, 0.01);
-		batchResult = engine.runForwards(input);
-		engine.evaluate(batchResult, expected);
-		
-		double loss2 = batchResult.getLoss();
-		double percentCorrect = batchResult.getPercentCorrect();
-		
-		System.out.println(loss1 + " " + loss2 + " " + percentCorrect);
+		for(int i = 0; i < 20; i++) {
+			Matrix input = Util.generateInputMatrix(inputRows, cols);
+			Matrix expected = Util.generateTrainableExpectedMatrix(outputRows, input);
+			BatchResult batchResult = engine.runForwards(input);
+			engine.runBackwards(batchResult, expected);
+			engine.adjust(batchResult, 0.01);
+			engine.evaluate(batchResult, expected);
+			
+			double loss = batchResult.getLoss();
+			double percentCorrect = batchResult.getPercentCorrect();
+			
+			System.out.printf("Loss: %.3f, %% correct: %.2f\n", loss, percentCorrect);
+		}
 	}
 
 	@Test
