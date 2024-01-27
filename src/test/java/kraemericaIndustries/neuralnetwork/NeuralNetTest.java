@@ -36,9 +36,11 @@ public class NeuralNetTest {
 		engine.adjust(batchResult, 0.01);
 		batchResult = engine.runForwards(input);
 		engine.evaluate(batchResult, expected);
-		double loss2 = batchResult.getLoss();
 		
-		System.out.println(loss1 + " " + loss2);
+		double loss2 = batchResult.getLoss();
+		double percentCorrect = batchResult.getPercentCorrect();
+		
+		System.out.println(loss1 + " " + loss2 + " " + percentCorrect);
 	}
 
 	@Test
