@@ -2,7 +2,6 @@ package kraemericaIndustries.neuralnetwork.loader;
 
 public interface MetaData {
 
-
 	public int getNumberItems();
 	
 	public void setNumberItems(int numberItems);
