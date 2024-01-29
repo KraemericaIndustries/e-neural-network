@@ -1,5 +1,6 @@
 package kraemericaIndustries.neuralnetwork.loader.test;
 
+import kraemericaIndustries.neuralnetwork.Util;
 import kraemericaIndustries.neuralnetwork.loader.BatchData;
 import kraemericaIndustries.neuralnetwork.loader.MetaData;
 
@@ -47,8 +48,31 @@ public class TestLoader implements kraemericaIndustries.neuralnetwork.loader.Loa
 
 	@Override
 	public BatchData readBatch() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(totalItemsRead == numberItems ) {
+			return null;
+		}
+		
+		itemsRead = batchSize;
+		
+		totalItemsRead += itemsRead;
+		
+		int excessItems = totalItemsRead - numberItems;
+		
+		if(excessItems > 0) {
+			totalItemsRead -= excessItems;
+			itemsRead -= excessItems;
+		}
+		
+		var io = Util.generateTrainingArrays(inputSize, expectedSize, itemsRead);
+		
+		var batchData = new TestBatchData();
+		batchData.setInputBatch(io.getInput());
+		batchData.setExpectedBatch(io.getOutput());
+		
+		metaData.setTotalItemsRead(totalItemsRead);
+		metaData.setItemsRead(itemsRead);
+		
+		return batchData;
 	}
-
 }
