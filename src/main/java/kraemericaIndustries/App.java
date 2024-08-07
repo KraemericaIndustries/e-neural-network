@@ -1,22 +1,33 @@
 package kraemericaIndustries;
 
-import kraemericaIndustries.neuralnetwork.NeuralNetwork;
-import kraemericaIndustries.neuralnetwork.Transform;
+import java.io.File;
+
+import kraemericaIndustries.neuralnetwork.loader.Loader;
+import kraemericaIndustries.neuralnetwork.loader.image.ImageLoader;
 
 public class App {
 
 	public static void main(String[] args) {
-		
-		int inputRows = 10;
-		int outputRows = 3;
 
-		NeuralNetwork neuralNetwork = new NeuralNetwork();
+		if(args.length == 0 || !new File(args[0]).isDirectory()) {
+			System.out.println("usage: [app] <MNIST DATA DIRECTORY>");
+			return;
+		}
 		
-		neuralNetwork.add(Transform.DENSE, 100, inputRows);
-		neuralNetwork.add(Transform.RELU);
-		neuralNetwork.add(Transform.DENSE, outputRows);
-		neuralNetwork.add(Transform.SOFTMAX);
+		String directory = args[0];
 		
-		System.out.println(neuralNetwork);
+		final String trainImages = String.format("%s%s%s",  directory, File.separator, "train-images-idx3-ubyte");
+		final String trainLabels = String.format("%s%s%s",  directory, File.separator, "train-labels-idx1-ubyte");
+		final String testImages = String.format("%s%s%s",  directory, File.separator, "t10k-images-idx3-ubyte");
+		final String testLabels = String.format("%s%s%s",  directory, File.separator, "t10k-labels-idx1-ubyte");
+		
+		Loader trainLoader = new ImageLoader(trainImages, trainLabels, 32);
+		Loader testLoader = new ImageLoader(testImages, testLabels, 32);
+		
+		trainLoader.open();
+		testLoader.open();
+		
+		trainLoader.close();
+		testLoader.close();
 	}
 }

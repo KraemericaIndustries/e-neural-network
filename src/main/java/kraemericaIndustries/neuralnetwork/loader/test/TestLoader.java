@@ -43,6 +43,7 @@ public class TestLoader implements kraemericaIndustries.neuralnetwork.loader.Loa
 
 	@Override
 	public void close() {
+		totalItemsRead = 0;
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class TestLoader implements kraemericaIndustries.neuralnetwork.loader.Loa
 	}
 
 	@Override
-	public BatchData readBatch() {
+	public synchronized BatchData readBatch() {
 		
 		if(totalItemsRead == numberItems ) {
 			return null;

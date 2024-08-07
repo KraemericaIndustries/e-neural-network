@@ -1,10 +1,15 @@
 package kraemericaIndustries.matrix;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Matrix {
+public class Matrix implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final String NUMBER_FORMAT = "%+12.5f ";  //  The + signs the o/p
 	private double tolerance = 0.000001;
 	
@@ -160,9 +165,9 @@ public Matrix modify(IndexValueProducer producer) {
 		return result;
 	}
 	
-	//  The following method MAGICALLY APPEARS in "133. Getting Greatest Row Numbers".  I have no record of it
+	//  The following method MAGICALLY APPEARS in "133. Getting Greatest Row Numbers".  I have no record of it.  
 	//  I'll add the method 'just in case' - but it may never be invoked.
-	//  Buyer beware...
+	//  The presenter corrects this in "153. Summing Matrix Elements".
 	public double sum() {
 		double sum = 0; 
 		
@@ -315,5 +320,9 @@ public Matrix modify(IndexValueProducer producer) {
 			sb.append('\n');
 		}
 		return sb.toString();	
+	}
+
+	public double[] get() {
+		return a;
 	}	
 }
