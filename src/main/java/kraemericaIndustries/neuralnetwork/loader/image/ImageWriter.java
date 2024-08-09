@@ -1,13 +1,12 @@
-package kraemericaIndustries;
+package kraemericaIndustries.neuralnetwork.loader.image;
 
 import java.io.File;
 
 import kraemericaIndustries.neuralnetwork.loader.BatchData;
 import kraemericaIndustries.neuralnetwork.loader.Loader;
 import kraemericaIndustries.neuralnetwork.loader.MetaData;
-import kraemericaIndustries.neuralnetwork.loader.image.ImageLoader;
 
-public class App {
+public class ImageWriter {
 
 	public static void main(String[] args) {
 
@@ -22,6 +21,13 @@ public class App {
 			System.out.println("'" + directory + "' is not a directory.");
 			return;
 		}
+		
+		new ImageWriter().run(directory);
+	}
+	
+	public void run(String directory) {
+		
+		System.out.println(directory);
 		
 		final String trainImages = String.format("%s%s%s",  directory, File.separator, "train-images-idx3-ubyte");
 		final String trainLabels = String.format("%s%s%s",  directory, File.separator, "train-labels-idx1-ubyte");
