@@ -67,6 +67,30 @@ public class ImageWriter {
 			
 			var montage = new BufferedImage(canvasWidth, canvasHeight, BufferedImage.TYPE_BYTE_GRAY);
 			
+			double[] pixelData = batchData.getInputBatch();
+			
+			int imageSize = imageWidth * imageHeight;
+			
+			for(int pixelIndex = 0; pixelIndex < pixelData.length; pixelIndex++) {
+				int imageNumber = pixelIndex/imageSize;
+				int pixelNumber = pixelIndex % imageSize;
+				
+				int montageRow = imageNumber / horizontalImages;
+				int montageCol = imageNumber % horizontalImages;
+				
+				int pixelRow = pixelNumber / imageWidth;
+				int pixelCol = pixelNumber % imageWidth;
+				
+				int x = montageCol * imageWidth + pixelCol;
+				int y = montageRow * imageHeight + pixelRow;
+				
+//				double pixelValue = pixelData[pixelIndex];
+//				int color = (int)(0x100 * pixelValue);
+//				int pixelColor = (color << 16) + (color << 8) + color;
+								
+				montage.setRGB(x, y, 0xFFFFFF);
+			}
+			
 			try {
 				ImageIO.write(montage, "jpg", new File(montagePath));
 			} catch (IOException e) {
