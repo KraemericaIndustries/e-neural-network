@@ -84,11 +84,11 @@ public class ImageWriter {
 				int x = montageCol * imageWidth + pixelCol;
 				int y = montageRow * imageHeight + pixelRow;
 				
-//				double pixelValue = pixelData[pixelIndex];
-//				int color = (int)(0x100 * pixelValue);
-//				int pixelColor = (color << 16) + (color << 8) + color;
+				double pixelValue = pixelData[pixelIndex];
+				int color = (int)(0x100 * pixelValue);
+				int pixelColor = (color << 16) + (color << 8) + color;
 								
-				montage.setRGB(x, y, 0xFFFFFF);
+				montage.setRGB(x, y, pixelColor);
 			}
 			
 			try {
