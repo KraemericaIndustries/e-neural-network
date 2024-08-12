@@ -40,7 +40,7 @@ public class NeuralNetwork implements Serializable {
 		this.threads = threads;
 	}
 	
-	public void setScaleInitial(double scale) {
+	public void setScaleInitialWeights(double scale) {
 		engine.setScaleInitialWeights(scale);
 	}
 
@@ -154,7 +154,7 @@ public class NeuralNetwork implements Serializable {
 
 	private BatchResult runBatch(Loader loader, boolean trainingMode) {
 
-		MetaData metaData = loader.open();
+		MetaData metaData = loader.getMetaData();
 
 		BatchData batchData = loader.readBatch();
 

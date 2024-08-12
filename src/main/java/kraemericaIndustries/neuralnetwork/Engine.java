@@ -16,12 +16,17 @@ public class Engine implements Serializable {
 	private LinkedList<Matrix> biases = new LinkedList<>();
 	
 	private LossFunction lossFunction = LossFunction.CROSSENTROPY;
+//0.0000000000000000000000000000000000000000000000001
 	private double scaleInitialWeights = 0.0000000000000000000000000000000000000000000000001;
 	
 	private boolean storeInputError = false;
 	
 	public void setScaleInitialWeights(double scale) {
 		scaleInitialWeights = scale;
+		
+		if(weights.size() != 0) {
+			throw new RuntimeException("Must call setScalieInitialWeights BEFORE adding transforms!");
+		}
 	}
 	
 	public void evaluate(BatchResult batchResult, Matrix expected) {
