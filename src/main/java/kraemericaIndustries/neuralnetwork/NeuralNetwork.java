@@ -164,7 +164,7 @@ public class NeuralNetwork implements Serializable {
 		int expectedSize = metaData.getExpectedSize();
 
 		Matrix input = new Matrix(inputSize, itemsRead, batchData.getInputBatch());
-		Matrix expected = new Matrix(inputSize, itemsRead, batchData.getExpectedBatch()); // WARNING!!!  Changed expectedSize to inputSize to circumvent bug I can not place with expectedSize
+		Matrix expected = new Matrix(expectedSize, itemsRead, batchData.getExpectedBatch()); // WARNING!!!  Changed expectedSize to inputSize to circumvent bug I can not place with expectedSize
 		
 		BatchResult batchResult = engine.runForwards(input);
 		

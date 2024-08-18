@@ -30,7 +30,7 @@ public class Calculus {
 		return (output2 - output1) / INC;
 	}
 	
-	public static void main (String[] args ) {
+	public static void main (String[] args) {
 		
 		double x = 2.76;
 		double y1 = func1(x);

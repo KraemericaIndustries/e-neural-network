@@ -22,6 +22,6 @@ public abstract class AbstractBatchData implements BatchData {
 
 	@Override
 	public void setExpectedBatch(double[] expectedBatch) {
-		this.expectedBatch = inputBatch;
+		this.expectedBatch = expectedBatch;
 	}
 }

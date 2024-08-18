@@ -17,7 +17,7 @@ public class Engine implements Serializable {
 	
 	private LossFunction lossFunction = LossFunction.CROSSENTROPY;
 //0.0000000000000000000000000000000000000000000000001
-	private double scaleInitialWeights = 0.0000000000000000000000000000000000000000000000001;
+	private double scaleInitialWeights = 1;
 	
 	private boolean storeInputError = false;
 	
@@ -25,14 +25,14 @@ public class Engine implements Serializable {
 		scaleInitialWeights = scale;
 		
 		if(weights.size() != 0) {
-			throw new RuntimeException("Must call setScalieInitialWeights BEFORE adding transforms!");
+			throw new RuntimeException("Must call setScaleInitialWeights BEFORE adding transforms!");
 		}
 	}
 	
 	public void evaluate(BatchResult batchResult, Matrix expected) {
 		
 		if(lossFunction != LossFunction.CROSSENTROPY) {
-			throw new UnsupportedOperationException("Only cross entropy is supported");
+			throw new UnsupportedOperationException("Only cross entropy loss is supported");
 		}
 		
 		double loss = LossFunctions.crossEntropy(expected, batchResult.getOutput()).averageColumn().get(0);
@@ -74,7 +74,7 @@ public class Engine implements Serializable {
 						
 				++denseIndex;
 			}
-			else if(t == Transform.RELU ) {
+			else if(t == Transform.RELU) {
 				output = output.modify(value -> value > 0 ? value: 0);
 			}
 			else if(t == Transform.SOFTMAX) {
@@ -189,7 +189,7 @@ public class Engine implements Serializable {
 			
 			sb.append(t);
 			
-			if(t == Transform.DENSE ) {
+			if(t == Transform.DENSE) {
 				sb.append(" ").append(weights.get(weightIndex).toString(false));
 				weightIndex++;
 			}

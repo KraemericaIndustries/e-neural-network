@@ -10,21 +10,21 @@ public class Matrix implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final String NUMBER_FORMAT = "%+12.5f ";  //  The + signs the o/p
+	private static final String NUMBER_FORMAT = "%+12.5f";  //  The + signs the o/p
 	private double tolerance = 0.000001;
 	
 	private int rows;
 	private int cols;
 	
-	public interface Producer {  //  A functional interface (because it only has 1 method in it 
+	public interface Producer {  //  A functional interface (because it only has 1 method in it)
 		double produce(int index);
 	}
 	
-	public interface IndexValueProducer {  
+	public interface IndexValueProducer {
 		double produce(int index, double value);
 	}
 	
-	public interface ValueProducer {  
+	public interface ValueProducer {
 		double produce(double value);
 	}
 	
@@ -40,7 +40,7 @@ public class Matrix implements Serializable {
 		void consume(int row, int col, int index, double value);
 	}
 	
-	public interface RowColProducer {  
+	public interface RowColProducer {
 		double produce(int row, int col, double value);
 	}
 

@@ -11,7 +11,7 @@ public class GeneratedDataApp {
 		
 		String filename = "neural1.net";
 		
-		System.out.println(Runtime.getRuntime().availableProcessors());
+//		System.out.println(Runtime.getRuntime().availableProcessors());
 		
 		NeuralNetwork neuralNetwork = NeuralNetwork.load(filename);
 		
@@ -25,7 +25,7 @@ public class GeneratedDataApp {
 			
 			neuralNetwork.add(Transform.DENSE, 100, inputRows);
 			neuralNetwork.add(Transform.RELU);
-			neuralNetwork.add(Transform.DENSE, 50, inputRows);
+			neuralNetwork.add(Transform.DENSE, 50);
 			neuralNetwork.add(Transform.RELU);
 			neuralNetwork.add(Transform.DENSE, outputRows);
 			neuralNetwork.add(Transform.SOFTMAX);
@@ -49,7 +49,7 @@ public class GeneratedDataApp {
 		if(neuralNetwork.save(filename)) {
 			System.out.println("Saved to " + filename);
 		} else {
-			System.out.println("Unable save to " + filename);
+			System.out.println("Unable to save to " + filename);
 		}
 		
 	}

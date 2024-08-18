@@ -53,7 +53,7 @@ public class App {
 
 			neuralNetwork = new NeuralNetwork();
 			neuralNetwork.setScaleInitialWeights(0.2);
-			neuralNetwork.setThreads(32);
+			neuralNetwork.setThreads(4);
 			neuralNetwork.setEpochs(100);
 			neuralNetwork.setLearningRates(0.02, 0.001);
 			
@@ -72,7 +72,7 @@ public class App {
 		if(neuralNetwork.save(filename)) {
 			System.out.println("Saved to " + filename);
 		} else {
-			System.out.println("Unable save to " + filename);
+			System.out.println("Unable to save to " + filename);
 		}
 	}
 }
