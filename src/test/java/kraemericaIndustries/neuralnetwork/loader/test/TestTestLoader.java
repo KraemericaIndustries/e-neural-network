@@ -37,10 +37,10 @@ public class TestTestLoader {
 			int expectedSize = metaData.getExpectedSize();
 			
 			Matrix input = new Matrix(inputSize, itemsRead, batchData.getInputBatch());
-//			Matrix expected = new Matrix(expectedSize, itemsRead, batchData.getExpectedBatch());  //  Test FAILS.  Was never able to figure out why
+			Matrix expected = new Matrix(expectedSize, itemsRead, batchData.getExpectedBatch());
 
 			assertTrue(input.sum() != 0);
-//			assertTrue(expected.sum() == itemsRead);  //  Test FAILS.  Was never able to figure out why
+			assertTrue(expected.sum() == itemsRead);
 
 			if(i == numberBatches - 1) {
 				assertTrue(itemsRead == lastBatchSize);
