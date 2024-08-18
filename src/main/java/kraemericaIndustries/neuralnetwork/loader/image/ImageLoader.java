@@ -131,11 +131,11 @@ public class ImageLoader implements Loader{
 			int inputItemsRead = readInputBatch(batchData);
 			int expectedItemsRead = readExpectedBatch(batchData);
 			
-			metaData.setItemsRead(inputItemsRead);
-			
 			if(inputItemsRead != expectedItemsRead) {
 				throw new LoaderException("Mismatch between images read and labels read.");
 			}
+			
+			metaData.setItemsRead(inputItemsRead);
 			
 			return batchData;
 		} finally {

@@ -20,12 +20,20 @@ public class ImageWriter {
 			return;
 		}
 		
-		String directory = args[0];
-		
-		if(!new File(directory).isDirectory()) {
-			System.out.println("'" + directory + "' is not a directory.");
+		File dir = new File(args[0]);
+
+		if (!dir.isDirectory()) {
+			try {
+				System.out.println(dir.getCanonicalPath() + " is not a directory.");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 			return;
 		}
+
+		String directory = args[0];
 		
 		new ImageWriter().run(directory);
 	}
